@@ -1,6 +1,9 @@
 # ocaml-screen-orientation
 
-Binding to [cordova-plugin-screen-orientation](https://github.com/apache/cordova-plugin-screen-orientation)
+Binding to
+[cordova-plugin-screen-orientation](https://github.com/apache/cordova-plugin-screen-orientation)
+
+This library is based on [this library](https://github.com/dannywillems/ocaml-cordova-plugin-screen-orientation)
 
 ## What does ocaml-screen-orientation do ?
 
