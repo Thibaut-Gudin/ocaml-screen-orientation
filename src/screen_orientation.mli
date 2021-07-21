@@ -12,6 +12,8 @@ type orientation_type =
 
 val orientation_type_to_str : orientation_type -> string
 
+val orientation_type_from_str : string -> orientation_type
+
 [@@@js.start]
 
 [@@@js.implem
@@ -25,9 +27,27 @@ let orientation_type_to_str c =
   | Landscape -> "landscape"
   | Any -> "any"]
 
-val lock : orientation_type -> unit [@@js.global "screen.orientation.lock"]
+[@@@js.implem
+let orientation_type_from_str str =
+  if String.equal str "portrait-primary" then Portrait_primary
+  else if String.equal str "portrait-secondary" then Portrait_secondary
+  else if String.equal str "landscape-primary" then Landscape_primary
+  else if String.equal str "landscape-secondary" then Landscape_secondary
+  else if String.equal str "portrait" then Portrait
+  else if String.equal str "landscape" then Landscape
+  else Any]
 
-val orientation : unit -> unit [@@js.global "screen.orientation.unlock"]
+type lock_t
+
+type unlock_t
+
+val lock : orientation_type -> lock_t [@@js.global "screen.orientation.lock"]
+
+val unlock : unit -> unlock_t [@@js.global "screen.orientation.unlock"]
+
+val lock_unit : lock_t -> unit
+
+val unlock_unit : unlock_t -> unit
 
 [@@@js.stop]
 
@@ -45,11 +65,10 @@ let screen_available () =
 let orientation_available () =
   Js_of_ocaml.Js.Optdef.test Js_of_ocaml.Js.Unsafe.global##.screen##.orientation]
 
-val lock_then :
-  lock:(orientation_type -> unit) -> callback:(unit -> unit) -> unit
+val lock_then : lock:lock_t -> callback:(unit -> unit) -> unit
   [@@js.global "screen.orientation.lock.then"]
 
-val unlock_then : unlock:(unit -> unit) -> callback:(unit -> unit) -> unit
+val unlock_then : unlock:unlock_t -> callback:(unit -> unit) -> unit
   [@@js.global "screen.orientation.unlock.then"]
 
 (*Pas sûr, renvoie des string?*)
