@@ -45,9 +45,9 @@ val lock : orientation_type -> lock_t [@@js.global "screen.orientation.lock"]
 
 val unlock : unit -> unlock_t [@@js.global "screen.orientation.unlock"]
 
-val lock_unit : lock_t -> unit
+val lock_unit : lock_t -> unit [@@js.call]
 
-val unlock_unit : unlock_t -> unit
+val unlock_unit : unlock_t -> unit [@@js.call]
 
 [@@@js.stop]
 
