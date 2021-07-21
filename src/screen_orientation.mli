@@ -41,13 +41,6 @@ type lock_t
 
 type unlock_t
 
-(*
-val lock : orientation_type -> lock_t [@@js.global "screen.orientation.lock"]
-
-val unlock : unit -> unlock_t [@@js.global "screen.orientation.unlock"]
-
-    *)
-
 [@@@js.stop]
 
 val screen_available : unit -> bool
@@ -63,14 +56,6 @@ let screen_available () =
 [@@@js.implem
 let orientation_available () =
   Js_of_ocaml.Js.Optdef.test Js_of_ocaml.Js.Unsafe.global##.screen##.orientation]
-
-(*
-val lock_then : lock:lock_t -> callback:(unit -> unit) -> unit
-  [@@js.global "screen.orientation.lock.then"]
-
-val unlock_then : unlock:unlock_t -> callback:(unit -> unit) -> unit
-  [@@js.global "screen.orientation.unlock.then"]
-   *)
 
 module Lock : sig
   type t
@@ -88,7 +73,4 @@ module Unlock : sig
   val then_ : t -> callback:(unit -> unit) -> unit [@@js.call]
 end
 
-(*Pas sûr, renvoie des string?*)
-val get_orientation_type : unit -> string [@@js.get "screen.orientation.type_"]
-
-val get_orientation_type2 : unit -> string [@@js.get "screen.orientation.type"]
+val get_orientation_type : unit -> string [@@js.get "screen.orientation.type"]
