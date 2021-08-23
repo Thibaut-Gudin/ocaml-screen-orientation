@@ -31,8 +31,8 @@ cordova plugin add screen-orientation
 ## How to use it?
 
 The functions `screen_available` and `orientation_available` can be used
-to know if the plugins "screen" and "screen.orientation" are availables,
-it's recomended to do theses evaluations before trying to use the others
+to know if the plugins "screen" and "screen.orientation" are available,
+it's recommended to do theses evaluations before trying to use the others
 functions of this library.
 
 ### What's an `orientation_type` ?
@@ -44,8 +44,8 @@ You can create an "orientation_type" value simply by typing for example
 "Portrait" or "Landscape" like you can see in `screen_orientation.mli`.
 You can also convert an `orientation_type` into string or convert a string
 into an `orientation_type` with the functions "orientation_type_to_str"
-and "orientation_type_from_str", this can be especially usefull combined
-with the function "get_orientation_type" that return the curent
+and "orientation_type_from_str", this can be especially useful combined
+with the function "get_orientation_type" that return the current
 `orientation_type` of the mobile device in the form of a string.
 
 ### `Lock` and `Unlock`
@@ -55,7 +55,7 @@ modules `Lock` and `Unlock`:
 As their name involve, the first module and it's main function "lock"
 enable to lock a mobile device into a certain position while navigating
 into an application while the second one and it's main function "unlock"
-is used to canceled the action of the `lock` function.
+is used to cancelled the action of the `lock` function.
 
-The two module have their own `then_` function that allow to excute a
+The two module have their own `then_` function that allow to execute a
 given callback after the execution of `lock` or `unlock`.
