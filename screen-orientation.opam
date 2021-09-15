@@ -17,4 +17,9 @@ depends: [
   "js_of_ocaml-ppx" {>= "3.8.0"}
   "lwt_ppx" {>= "2.0.1"}
   "promise_jsoo"
-  ]
+  "promise_jsoo-ppx"
+  "promise_jsoo_lwt"
+]
+pin-depends: [
+  [ "promise_jsoo_lwt" "git+https://github.com/mnxn/promise_jsoo"]
+]
