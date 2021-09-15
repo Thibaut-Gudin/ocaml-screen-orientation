@@ -37,10 +37,6 @@ let orientation_type_from_str str =
   else if String.equal str "landscape" then Landscape
   else Any]
 
-type lock_t
-
-type unlock_t
-
 [@@@js.stop]
 
 val screen_available : unit -> bool

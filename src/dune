@@ -1,12 +1,12 @@
 (rule
- (targets screen_orientation.ml)
- (deps screen_orientation.mli)
+ (targets base.ml)
+ (deps base.mli)
  (action (run %{bin:gen_js_api} %{deps})))
 
 (library
  (public_name screen-orientation)
  (name screen_orientation)
  (modes byte)
- (libraries gen_js_api js_of_ocaml js_of_ocaml-ppx)
- (preprocess (pps js_of_ocaml-ppx))
+ (libraries gen_js_api js_of_ocaml js_of_ocaml-ppx promise_jsoo promise_jsoo_lwt)
+ (preprocess (pps js_of_ocaml-ppx lwt_ppx))
 )

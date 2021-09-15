@@ -59,3 +59,10 @@ is used to cancelled the action of the `lock` function.
 
 The two module have their own `then_` function that allow to execute a
 given callback after the execution of `lock` or `unlock`.
+
+### `Lwt` module
+
+TODO: use [promise_jsoo](https://github.com/mnxn/promise_jsoo) for the
+module implementation.
+Use [promise_jsoo_lwt.Promise_lwt
+?](https://mnxn.github.io/promise_jsoo/promise_jsoo_lwt/Promise_lwt/index.html)
