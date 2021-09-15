@@ -12,9 +12,20 @@ let unlock_lwt () =
   Base.Unlock.then_ (Base.Unlock.unlock ()) ~callback:wakeup
  *)
 
-let lock_lwt ori wakeup =
-  Promise_lwt.of_promise (Promise.then_ ~fulfilled:wakeup (Base.Lock.lock ori))
+let promise (f : _ -> unit) = Promise.make (fun ~resolve:_ ~reject:_ -> f ())
 
-let unlock_lwt () wakeup =
+let lock_lwt ori ~callback =
   Promise_lwt.of_promise
-    (Promise.then_ ~fulfilled:wakeup (Base.Unlock.unlock ()))
+    (Promise.then_
+       ~fulfilled:(fun _ -> promise callback)
+       (promise (fun _ ->
+            let _ = Base.Lock.lock ori in
+            ())))
+
+let unlock_lwt () ~callback =
+  Promise_lwt.of_promise
+    (Promise.then_
+       ~fulfilled:(fun _ -> promise callback)
+       (promise (fun _ ->
+            let _ = Base.Unlock.unlock () in
+            ())))
